@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import 'register_screen.dart';
+import 'forgot_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -94,7 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                           color: AppColors.purpleDark,
                         ),
-                        onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                        onPressed: (
+                          
+                        ) => setState(() => _obscurePassword = !_obscurePassword),
                       ),
                       border: const UnderlineInputBorder(),
                       enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorder)),
@@ -106,7 +109,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ForgotPasswordScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Olvide mi contraseña',
                         style: TextStyle(color: AppColors.orangePrimary, fontSize: 12),
