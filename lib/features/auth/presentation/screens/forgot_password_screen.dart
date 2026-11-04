@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
-//import 'verification_screen.dart';
+import 'verification_screen.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -155,14 +155,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           ),
                         ),
                         onPressed: () {
-                          /* Navega a la pantalla de validación OTP de 6 dígitos
+                         //Navega a la pantalla de validación OTP de 6 dígitos
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (_) => const VerificationScreen(),
                             ),
                           );
-                          */
+                          
                         },
                         child: const Text(
                           'Enviar',
