@@ -191,33 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 15),
-
-                  // Botón de Google conectado
-                  Center(
-                    child: InkWell(
-                      onTap: _handleLogin,
-                      borderRadius: BorderRadius.circular(30),
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.grey.shade300),
-                          color: Colors.white,
-                        ),
-                        child: Image.asset(
-                          'assets/images/google_logo.png',
-                          height: 28,
-                          width: 28,
-                          errorBuilder: (_, __, ___) => const Icon(
-                            Icons.g_mobiledata_rounded,
-                            size: 28,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 25),
+                  // Botón Google
 
                   // Link a Registro
                   Row(
