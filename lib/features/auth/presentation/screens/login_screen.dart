@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../products/presentation/screens/gestion_screen.dart';
 import 'register_screen.dart';
 import 'forgot_password_screen.dart';
 
@@ -14,6 +15,20 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _handleLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const GestionScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +53,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   Image.asset(
                     'assets/images/logo_dixema.png',
                     height: 200,
-                    errorBuilder: (_, __, ___) => const Icon(Icons.storefront, color: Colors.white, size: 45),
+                    errorBuilder: (_, __, ___) => const Icon(
+                      Icons.storefront,
+                      color: Colors.white,
+                      size: 45,
+                    ),
                   ),
                   const SizedBox(height: 15),
-                  
                   RichText(
                     text: const TextSpan(
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                       children: [
                         TextSpan(text: 'Bienvenido '),
-                        TextSpan(text: 'de ', style: TextStyle(color: AppColors.orangePrimary)),
+                        TextSpan(
+                          text: 'de ',
+                          style: TextStyle(color: AppColors.orangePrimary),
+                        ),
                         TextSpan(text: 'nuevo!'),
                       ],
                     ),
@@ -61,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            
+
             // Formulario
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 30.0),
@@ -71,13 +96,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Correo electrónico
                   TextField(
                     controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       labelText: 'Correo electrónico',
                       labelStyle: TextStyle(color: AppColors.purpleDark, fontSize: 13),
                       suffixIcon: Icon(Icons.email_outlined, color: AppColors.purpleDark),
                       border: UnderlineInputBorder(),
-                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorder)),
-                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.purpleDark)),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.inputBorder),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.purpleDark),
+                      ),
                       filled: false,
                     ),
                   ),
@@ -92,20 +122,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelStyle: const TextStyle(color: AppColors.purpleDark, fontSize: 13),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                          _obscurePassword
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
                           color: AppColors.purpleDark,
                         ),
-                        onPressed: (
-                          
-                        ) => setState(() => _obscurePassword = !_obscurePassword),
+                        onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                       ),
                       border: const UnderlineInputBorder(),
-                      enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorder)),
-                      focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: AppColors.purpleDark)),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.inputBorder),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.purpleDark),
+                      ),
                       filled: false,
                     ),
                   ),
-                  
+
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -125,13 +159,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Botón Iniciar Sesión
+                  // Botón Iniciar Sesión conectado a GestionScreen
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.orangePrimary,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                     ),
-                    onPressed: () {},
+                    onPressed: _handleLogin,
                     child: const Text('Iniciar sesión'),
                   ),
                   const SizedBox(height: 25),
@@ -139,22 +175,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Divisor Google
                   Row(
                     children: const [
-                      Expanded(child: Divider(color: AppColors.orangePrimary, thickness: 1)),
+                      Expanded(
+                        child: Divider(color: AppColors.orangePrimary, thickness: 1),
+                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text('o iniciar con', style: TextStyle(color: AppColors.orangePrimary, fontSize: 12)),
+                        child: Text(
+                          'o iniciar con',
+                          style: TextStyle(color: AppColors.orangePrimary, fontSize: 12),
+                        ),
                       ),
-                      Expanded(child: Divider(color: AppColors.orangePrimary, thickness: 1)),
+                      Expanded(
+                        child: Divider(color: AppColors.orangePrimary, thickness: 1),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 15),
 
-                  // Botón de Google
+                  // Botón de Google conectado
                   Center(
                     child: InkWell(
-                      onTap: () {
-                        // Acción de inicio de sesión con Google
-                      },
+                      onTap: _handleLogin,
                       borderRadius: BorderRadius.circular(30),
                       child: Container(
                         padding: const EdgeInsets.all(10),
@@ -167,6 +208,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           'assets/images/google_logo.png',
                           height: 28,
                           width: 28,
+                          errorBuilder: (_, __, ___) => const Icon(
+                            Icons.g_mobiledata_rounded,
+                            size: 28,
+                            color: Colors.red,
+                          ),
                         ),
                       ),
                     ),
@@ -177,7 +223,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Aun no tienes una cuenta? ', style: TextStyle(fontSize: 12, color: AppColors.purpleDark)),
+                      const Text(
+                        'Aun no tienes una cuenta? ',
+                        style: TextStyle(fontSize: 12, color: AppColors.purpleDark),
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushReplacement(
@@ -186,8 +235,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         },
                         child: const Text(
-                          'RESGISTRATE',
-                          style: TextStyle(color: AppColors.purpleDark, fontWeight: FontWeight.bold, fontSize: 12),
+                          'REGÍSTRATE',
+                          style: TextStyle(
+                            color: AppColors.purpleDark,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
                         ),
                       ),
                     ],
