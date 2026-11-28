@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/custom_bottom_nav.dart';
 import '../../../auth/presentation/screens/login_screen.dart';
+import '../../../chat/presentation/screens/chat_screen.dart';
+import '../../../profile/presentation/screens/profile_screen.dart';
 import 'add_product_screen.dart';
 import 'dashboard_screen.dart';
 import 'product_repository.dart';
@@ -15,7 +17,7 @@ class GestionScreen extends StatefulWidget {
 }
 
 class _GestionScreenState extends State<GestionScreen> {
-  int _selectedNavIndex = 1; // "Gestion" activo por defecto
+  final int _selectedNavIndex = 1; // "Gestion" activo por defecto
   String _selectedFilter = 'Todos';
 
   void _showLogoutDialog() {
@@ -260,15 +262,29 @@ class _GestionScreenState extends State<GestionScreen> {
       bottomNavigationBar: CustomBottomNav(
         currentIndex: _selectedNavIndex,
         onTap: (index) {
+          if (index == _selectedNavIndex) return;
+
           if (index == 0) {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (_) => const DashboardScreen()),
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const DashboardScreen(),
+                transitionDuration: Duration.zero,
+              ),
             );
-          } else {
-            setState(() {
-              _selectedNavIndex = index;
-            });
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ChatScreen()),
+            );
+          } else if (index == 3) {
+            Navigator.pushReplacement(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const ProfileScreen(),
+                transitionDuration: Duration.zero,
+              ),
+            );
           }
         },
       ),

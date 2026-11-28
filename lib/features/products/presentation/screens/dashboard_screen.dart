@@ -2,6 +2,8 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/custom_bottom_nav.dart';
+import '../../../chat/presentation/screens/chat_screen.dart';
+import '../../../profile/presentation/screens/profile_screen.dart';
 import 'gestion_screen.dart';
 import 'product_repository.dart';
 
@@ -17,10 +19,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   void _onNavTap(int index) {
     if (index == _selectedNavIndex) return;
+
     if (index == 1) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const GestionScreen()),
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => const GestionScreen(),
+          transitionDuration: Duration.zero,
+        ),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const ChatScreen()),
+      );
+    } else if (index == 3) {
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => const ProfileScreen(),
+          transitionDuration: Duration.zero,
+        ),
       );
     }
   }
@@ -335,7 +354,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       child: Row(
         children: [
-          // Miniatura real del producto (desde dispositivo o assets)
           Container(
             height: 46,
             width: 52,
@@ -361,7 +379,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           const SizedBox(width: 12),
 
-          // Título y precio exacto de Gestión
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -391,7 +408,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           const SizedBox(width: 8),
 
-          // Contador rojo/naranja a la derecha
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
